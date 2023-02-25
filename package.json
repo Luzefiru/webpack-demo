@@ -4,7 +4,8 @@
   "description": "A test repository to practice the different functionalities of webpack to implement module bundling in my future projects.",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",

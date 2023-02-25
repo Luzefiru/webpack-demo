@@ -38,3 +38,20 @@ npx webpack --config webpack.config.js
 ```
 
 For more option settings, check the [Configuration | webpack Documentation](https://webpack.js.org/configuration/).
+
+### Creating a Task Runner to `build` Using Webpack
+
+In order to use an `npm` `package.json` `"scripts": {}` script to run webpack instead of typing `npx webpack`, we can add a `"build": "webpack"` `"command": "script"` pair in the `"scripts": {}` object.
+
+```JSON
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  ```
+
+  We can now run webpack with this instead of `npx webpack`:
+  
+  ```bash
+  npm run build
+  ```
