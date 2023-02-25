@@ -36,3 +36,5 @@ In order to set webpack to run with it everytime we do `npx webpack`, we first h
 ```bash
 npx webpack --config webpack.config.js
 ```
+
+For more option settings, check the [Configuration | webpack Documentation](https://webpack.js.org/configuration/).
