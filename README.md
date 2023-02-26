@@ -55,3 +55,38 @@ In order to use an `npm` `package.json` `"scripts": {}` script to run webpack in
   ```bash
   npm run build
   ```
+
+  ### Using webpack Modules to Parse CSS
+
+We can use webpack to bundle code beyond `.js` files like `.css` files in conjunction with CSS Preprocessors. First, we install the necessary modules as a Development Dependency.
+
+```bash
+npm install --save-dev style-loader css-loader
+```
+
+Then, we add a `module:` property to our `webpack.config.js` file with the rules to determine what kind of files (expressed as a Regular Expression) for our loaders to bundle.
+
+```JavaScript
+  module.exports = {
+  entry: './src/index.js',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
+  },
+};
+```
+
+Finally, we can now `import <file_path>` our `.css` files to be processed and bundled by the loaders in our `index.js` file when we do `npx webpack` or `npm run build` if we setup the npm script from earlier.
+
+```JavaScript
+import _ from 'lodash';
+import './style.css';
+```
