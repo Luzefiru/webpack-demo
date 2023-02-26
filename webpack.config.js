@@ -20,6 +20,14 @@ module.exports = {
         test: /\.(woff|woff2|eot|ttf|otf)$/i, // select all typeface file extensions
         type: 'asset/resource', // process them as an 'asset/resource'
       },
+      {
+        test: /\.(csv|tsv)$/i,
+        use: ['csv-loader'],
+      },
+      {
+        test: /\.xml$/i,
+        use: ['xml-loader'],
+      },
     ],
   },
 };
