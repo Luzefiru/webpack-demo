@@ -123,3 +123,49 @@ import MyImage from './my-image.png' // bundles & replaces `./my-image.png` with
 background-image: url(./my-image.png) // in CSS files too
 <img src="./my-image.png" /> // and in our ./dist/index.html
 ```
+
+### Handling Multiple JavaScript Entry Points with `webpack.config.js`
+
+When our project gets bigger and we have multiple JavaScript files, we need to alias the files using **Entry Point Names** in `webpack.config.js`. These **Entry Point Names are then substituted** when we do `[name]` in the **Output**'s `filename:` Property.
+
+```JavaScript
+entry: {
+    // we want to bundle these 2 script files into our ./dist/ directory to be used in index.html
+    index: './src/index.js',
+    print: './src/print.js',
+  },
+output: {
+    filename: '[name].bundle.js', // aliases the entry point property names and their output to the [name] placeholder
+    path: path.resolve(__dirname, 'dist'),
+  },
+```
+
+We can now `npm run build` and the outputted files will be `index.bundle.js` and `print.bundle.js` inside the `./dist/` directory. However, we still need to **MANUALLY** link them via HTML `<script src="./index.bundle.js">` `<script src="./print.bundle.js">` tags.
+
+### Automatically Inserting Bundled JS into HTML Using **HtmlWebpackPlugin**
+
+First, we install the` html-webpack-plugin` using npm.
+
+```bash
+npm install --save-dev html-webpack-plugin
+```
+
+Then, we `require()` it inside the `webpack.package.json` file and edit the `module.exports` object.
+
+```JavaScript
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+// add this into the module.exports object
+plugins: [
+  new HtmlWebpackPlugin({
+    title: 'Output Management',
+    // it will create its own index.html file with this title
+  }),
+],
+```
+
+Now, this command creates an `index.html` file in `./dist/` with all our Entry Point files with their specified output filenames.
+
+```bash
+npm run build
+```
