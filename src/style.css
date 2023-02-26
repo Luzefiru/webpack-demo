@@ -1,4 +1,12 @@
+@font-face {
+  font-family: 'Mynerve';
+  src: url('./Mynerve-Regular') format('ttf');
+  font-weight: 400;
+  font-style: normal;
+}
+
 .hello {
   color: red;
+  font-family: 'Mynerve';
   background: url('./logo.svg');
 }
