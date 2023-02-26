@@ -56,7 +56,7 @@ In order to use an `npm` `package.json` `"scripts": {}` script to run webpack in
   npm run build
   ```
 
-  ### Using webpack Modules to Parse CSS
+### Using webpack Modules to Parse CSS
 
 We can use webpack to bundle code beyond `.js` files like `.css` files in conjunction with CSS Preprocessors. First, we install the necessary modules as a Development Dependency.
 
@@ -89,4 +89,37 @@ Finally, we can now `import <file_path>` our `.css` files to be processed and bu
 ```JavaScript
 import _ from 'lodash';
 import './style.css';
+```
+
+### Modules to Parse Image & Font Resources
+
+We have to make sure to include our assets in the `./src/` directory so that webpack can scan it to generate the bundle.
+
+Before we start adding our files, we need to add new rules to the `webpack.config.js` file:
+
+```JavaScript
+module: {
+  rules: [
+    {
+      test: /\.css$/i,
+      use: ['style-loader', 'css-loader'],
+    },
+    {
+      test: /\.(png|svg|jpg|jpeg|gif)$/i, // select all image file extensions
+      type: 'asset/resource', // process them as an 'asset/resource'
+    },
+    {
+      test: /\.(woff|woff2|eot|ttf|otf)$/i, // select all typeface file extensions
+      type: 'asset/resource', // process them as an 'asset/resource'
+    },
+  ],
+},
+```
+
+Now, evertime we refer a file path to an image or a typeface, webpack will add them to the `./dist/` directory and replace the output files' file paths with the output's paths.
+
+```JavaScript
+import MyImage from './my-image.png' // bundles & replaces `./my-image.png` with the `./dist` file path
+background-image: url(./my-image.png) // in CSS files too
+<img src="./my-image.png" /> // and in our ./dist/index.html
 ```
