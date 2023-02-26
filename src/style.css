@@ -1,12 +1,10 @@
 @font-face {
-  font-family: 'Mynerve';
-  src: url('./Mynerve-Regular') format('ttf');
-  font-weight: 400;
-  font-style: normal;
+  font-family: 'test';
+  src: url('./Ubuntu-Regular.ttf');
 }
 
 .hello {
   color: red;
-  font-family: 'Mynerve';
+  font-family: 'test';
   background: url('./logo.svg');
 }
