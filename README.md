@@ -169,3 +169,7 @@ Now, this command creates an `index.html` file in `./dist/` with all our Entry P
 ```bash
 npm run build
 ```
+
+### Tracking Bugs in Development using Source Maps
+
+We simply add a `devtool:` property in our `module.exports` file and give it a value of `'inline-source-map'` and it will trace where bugs or errors in our JavaScript occured.
